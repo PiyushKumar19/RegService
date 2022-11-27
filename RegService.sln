@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegService", "RegService\RegService.csproj", "{E7DEBC61-0545-4257-AD67-9B9266C49245}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7DEBC61-0545-4257-AD67-9B9266C49245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7DEBC61-0545-4257-AD67-9B9266C49245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7DEBC61-0545-4257-AD67-9B9266C49245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7DEBC61-0545-4257-AD67-9B9266C49245}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD5C9577-5AAF-459F-B520-2A559658F9DC}
+	EndGlobalSection
+EndGlobal
