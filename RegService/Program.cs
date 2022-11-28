@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RegService.AppDbContext;
 using RegService.InterfacesAndSqlRepos;
@@ -11,6 +12,8 @@ builder.Services.AddTransient<IUsersCRUD, SqlUsersCRUDRepo>();
 string cs = "Database=RegServiceDb;server=LAPTOP-2SDVC21L;Uid=sa;password=Piyush@1529;";
 builder.Services.AddDbContextPool<DatabaseContext>(option =>
 option.UseSqlServer(cs));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<DatabaseContext>();
 
 var app = builder.Build();
 
@@ -23,10 +26,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCookiePolicy();
+
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=LoginByFormNumber}/{id?}");
 
 app.Run();

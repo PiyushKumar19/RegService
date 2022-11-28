@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,58 +15,74 @@ namespace RegService.Controllers
     public class UsersController : Controller
     {
         private readonly IUsersCRUD cRUD;
+        private readonly DatabaseContext context;
 
-        public UsersController(IUsersCRUD _cRUD)
+        public UsersController(IUsersCRUD _cRUD, DatabaseContext context)
         {
             cRUD = _cRUD;
+            this.context = context;
         }
 
+        // This Method is for getting a list of all registered users.
+        [Authorize(Roles = "Admin, Developer")]
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers()
+        public IActionResult GetAllUsers()
         {
             var user = cRUD.GetAll();
-              return View(user);
+            return View(user);
         }
 
+        // This method shows all the details of the user with the Id.
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        [Authorize]
+        public IActionResult Details(int id)
         {
-            cRUD.Delete(id);
+            var user = cRUD.GetById(id);
 
-            return RedirectToAction("GetAllUsers");
+            return View(user);
         }
 
+        // This method is for creating new user.
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
+        // This is the Post Action of Create method.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(UsersRegModel model)
         {
             if (ModelState.IsValid)
-            {
-                var user = cRUD.Create(model);
-                if(user != null)
+            {                
+                var res = cRUD.FindByFileNoAndContactNo(model.FileNo, model.ContactNo);
+                if(res == false)
                 {
-                    return RedirectToAction("GetAllUsers");
+                    var user = cRUD.Create(model);
+                    if (user != null)
+                    {
+                        return RedirectToAction("Details", new RouteValueDictionary(new { controller = "Users", action = "Details", Id = user.Id }));
+                    }
                 }
+                
             }
             return View();
         }
 
+        // This method is to edit registered user.
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        [Authorize(Roles = "Admin")]
+        public IActionResult Edit(int id)
         {
-            var user = cRUD.Get(id);
+            var user = cRUD.GetById(id);
             return View(user);
         }
-
+        // Post Action of Edit Method.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,FatherName,MotherName,PhoneNo,Email")] UsersRegModel model)
+        public IActionResult Edit(int id, UsersRegModel model)
         {
             if (id != model.Id)
             {
@@ -80,9 +97,11 @@ namespace RegService.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Delete(int id)
+        // This method is for deleting the user.
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
         {
-            var model = await cRUD.Get(id);
+            var model = cRUD.GetById(id);
             if (model == null)
             {
                 return NotFound();

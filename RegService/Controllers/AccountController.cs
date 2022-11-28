@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RegService.InterfacesAndSqlRepos;
 using RegService.Models;
@@ -21,11 +22,14 @@ namespace RegService.Controllers
             this.logger = _logger;
         }
 
+        // This method is for registering with Email Id and Password.
+        [Route("Account/Developer/")]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+        [Route("Account/Developer/")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -37,19 +41,11 @@ namespace RegService.Controllers
                     Email = model.Email,
                     PhoneNumber = model.ContactNo,
                 };
-                var newuser = new UsersRegModel
-                {
-                    Name = model.Name,
-                    FatherName = model.FatherName,
-                    MotherName = model.MotherName,
-                    ContactNo = model.ContactNo
-                };
-                cRUD.Create(newuser);
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("AllProducts", "Products");
+                    return RedirectToAction("GetAllUsers", "Users");
                 }
                 foreach (var error in result.Errors)
                 {
@@ -59,7 +55,9 @@ namespace RegService.Controllers
             return View(model);
         }
 
+        // This method is for login with Email Id and Password.
         [HttpGet]
+        [Route("Account/Login/")]
         public IActionResult Login()
         {
             return View();
@@ -87,11 +85,30 @@ namespace RegService.Controllers
             return View(model);
         }
 
+        // This method is for finding the data by FileNo.
+        [HttpGet]
+        public IActionResult LoginByFormNumber()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult LoginByFormNumber(LoginTestingViewModel model)
+        {
+            UsersRegModel user = cRUD.FindByFileNo(model.FileNo);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return RedirectToAction("Details", new RouteValueDictionary(new { controller = "Users", action = "Details", Id = user.Id }));
+        }
+
+        // This method is for Logout.
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Register", "Account");
+            return RedirectToAction("LoginByFormNumber", "Account");
         }
     }
 }

@@ -8,6 +8,7 @@ namespace RegService.ViewModel
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public string? ContactNo { get; set; }
         public bool RememberMe { get; set; }
     }
 }

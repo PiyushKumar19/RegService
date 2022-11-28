@@ -1,8 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace RegService.ViewModel
 {
+    [Keyless]
     public class RegisterViewModel
     {
         //public string UserName { get; set; }
@@ -21,10 +23,7 @@ namespace RegService.ViewModel
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Password Not Matched")]
         public string ConfirmPassword { get; set; }
-
-        public string Name { get; set; }
-        public string FatherName { get; set; }
-        public string MotherName { get; set; }
+        [Required]
         public string ContactNo { get; set; }
     }
 }

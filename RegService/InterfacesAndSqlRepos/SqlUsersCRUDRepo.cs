@@ -1,4 +1,5 @@
-﻿using RegService.AppDbContext;
+﻿using Microsoft.AspNetCore.Mvc;
+using RegService.AppDbContext;
 using RegService.Models;
 
 namespace RegService.InterfacesAndSqlRepos
@@ -19,18 +20,18 @@ namespace RegService.InterfacesAndSqlRepos
             return model;
         }
 
-        public async Task<UsersRegModel> Delete(int id)
+        public UsersRegModel Delete(int id)
         {
-            var user = await context.Users.FindAsync(id);
+            var user = context.Users.Find(id);
             if (user != null)
                 context.Users.Remove(user);
-                await context.SaveChangesAsync();
+                context.SaveChanges();
             return user;
         }
 
-        public async Task<UsersRegModel> Get(int id)
+        public UsersRegModel GetById(int id)
         {
-            return await context.Users.FindAsync(id);
+            return context.Users.Find(id);
         }
 
         public IEnumerable<UsersRegModel> GetAll()
@@ -44,6 +45,27 @@ namespace RegService.InterfacesAndSqlRepos
             up.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
             return upmodel;
+        }
+
+        public bool FindByFileNoAndContactNo(int fileno, string contactno)
+        {
+            var f = context.Users.Where(c => c.FileNo.Equals(fileno)).FirstOrDefault();
+            var c = context.Users.Where(c => c.ContactNo.Equals(contactno)).FirstOrDefault();
+            if (f == null && c == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public UsersRegModel FindByFileNo(int fileno)
+        {
+            var f = context.Users.Where(c => c.FileNo.Equals(fileno)).FirstOrDefault();
+            if (f == null)
+            {
+                return null;
+            }
+            return f;
         }
     }
 }

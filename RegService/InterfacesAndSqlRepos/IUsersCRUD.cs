@@ -4,10 +4,12 @@ namespace RegService.InterfacesAndSqlRepos
 {
     public interface IUsersCRUD
     {
-        public Task<UsersRegModel> Get(int id);
+        public UsersRegModel GetById(int id);
         public IEnumerable<UsersRegModel> GetAll();
         public UsersRegModel Create(UsersRegModel model);
         public UsersRegModel Update(UsersRegModel upmodel);
-        public Task<UsersRegModel> Delete(int id);
+        public UsersRegModel Delete(int id);
+        public bool FindByFileNoAndContactNo(int fileno, string contactno);
+        public UsersRegModel FindByFileNo(int fileno);
     }
 }
