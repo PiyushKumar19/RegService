@@ -22,4 +22,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
 
+  <Target Name="Tailwind" BeforeTargets="Build">
+    <Exec Command="npm run input:build"/>
+  </Target>
+
 </Project>

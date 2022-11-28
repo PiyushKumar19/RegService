@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2o3hX1PgKUxzUnEDpQ/9+b0KXy7B6dOxe2ANJ8usaUI=",
+  "Hash": "UKX/HlqYe17syL7JRUeLtHXny7dFT+KIdrjkPHa1SUQ=",
   "Source": "RegService",
   "BasePath": "_content/RegService",
   "Mode": "Default",
@@ -49,6 +49,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Piyush\\source\\repos\\RegService\\RegService\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\RegService.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Piyush\\source\\repos\\RegService\\RegService\\wwwroot\\css\\input.css",
+      "SourceId": "RegService",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Piyush\\source\\repos\\RegService\\RegService\\wwwroot\\",
+      "BasePath": "_content/RegService",
+      "RelativePath": "css/input.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\input.css"
+    },
+    {
+      "Identity": "C:\\Users\\Piyush\\source\\repos\\RegService\\RegService\\wwwroot\\css\\output.css",
+      "SourceId": "RegService",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Piyush\\source\\repos\\RegService\\RegService\\wwwroot\\",
+      "BasePath": "_content/RegService",
+      "RelativePath": "css/output.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\output.css"
     },
     {
       "Identity": "C:\\Users\\Piyush\\source\\repos\\RegService\\RegService\\wwwroot\\css\\site.css",
