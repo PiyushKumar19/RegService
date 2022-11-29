@@ -258,7 +258,6 @@ C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\RegService.R
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\RegService.RazorAssemblyInfo.cs
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\scopedcss\bundle\RegService.styles.css
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\scopedcss\projectbundle\RegService.bundle.scp.css
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\RegService.csproj.CopyComplete
@@ -267,3 +266,4 @@ C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\refint\RegSe
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\RegService.pdb
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\RegService.genruntimeconfig.cache
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\ref\RegService.dll
+C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutOriginal.cshtml.rz.scp.css

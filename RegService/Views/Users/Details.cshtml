@@ -21,12 +21,13 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
+
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.LastName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
+                @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class = "col-sm-2">
             <p>Mobile Numebr: </p>
@@ -38,69 +39,150 @@
             @Html.DisplayNameFor(model => model.EmailId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmailId)
+            @if (Model.EmailId == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.EmailId)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Address)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
+            @if (Model.Address == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Address)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Pincode)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Pincode)
+            @if (Model.Pincode == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Pincode)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.State)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.State)
+            @if (Model.State == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.State)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.District)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.District)
+            @if (Model.District == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.District)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AccountNo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccountNo)
+            @if(Model.AccountNo == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.AccountNo)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IFSCcode)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IFSCcode)
+            @if (Model.IFSCcode == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.IFSCcode)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Branch)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Branch)
+            @if (Model.Branch == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Branch)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BankName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BankName)
+            @if (Model.BankName == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.BankName)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AadhaarNo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AadhaarNo)
+            @if (Model.AadhaarNo == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.AadhaarNo)
+            }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PanNo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PanNo)
+            @if (Model.PanNo == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.PanNo)
+            }
         </dd>
     </dl>
+</div>
+
+<div class="">
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |

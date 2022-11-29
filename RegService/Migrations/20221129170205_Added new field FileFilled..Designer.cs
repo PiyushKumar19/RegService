@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegService.AppDbContext;
 
@@ -11,9 +12,10 @@ using RegService.AppDbContext;
 namespace RegService.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221129170205_Added new field FileFilled.")]
+    partial class AddednewfieldFileFilled
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,30 +226,6 @@ namespace RegService.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("RegService.Models.UserRegStatus", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<bool?>("FileFilled")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("RegStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserRegModelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserRegModelId");
-
-                    b.ToTable("UserRegStatuses");
-                });
-
             modelBuilder.Entity("RegService.Models.UsersRegModel", b =>
                 {
                     b.Property<int>("Id")
@@ -280,6 +258,9 @@ namespace RegService.Migrations
                     b.Property<string>("EmailId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("FileFilled")
+                        .HasColumnType("bit");
 
                     b.Property<int>("FileNo")
                         .HasColumnType("int");
@@ -395,15 +376,6 @@ namespace RegService.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RegService.Models.UserRegStatus", b =>
-                {
-                    b.HasOne("RegService.Models.UsersRegModel", "UserRegModel")
-                        .WithMany()
-                        .HasForeignKey("UserRegModelId");
-
-                    b.Navigation("UserRegModel");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,5 +25,6 @@ namespace RegService.AppDbContext
         }
         public DbSet<RegService.ViewModel.RegisterViewModel> RegisterViewModel { get; set; }
         public DbSet<LoginTestingViewModel> LoginTestingViewModel { get; set; }
+        public DbSet<UserRegStatus> UserRegStatuses { get; set; }
     }
 }

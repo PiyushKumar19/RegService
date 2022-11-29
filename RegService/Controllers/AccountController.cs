@@ -57,12 +57,13 @@ namespace RegService.Controllers
 
         // This method is for login with Email Id and Password.
         [HttpGet]
-        [Route("Account/Login/")]
+        [Route("CAdmin/Login/")]
         public IActionResult Login()
         {
             return View();
         }
         [HttpPost]
+        [Route("CAdmin/Login/")]
         public async Task<IActionResult> Login(LoginViewModel model, string? returnURL)
         {
             if (ModelState.IsValid)
@@ -86,11 +87,13 @@ namespace RegService.Controllers
         }
 
         // This method is for finding the data by FileNo.
+        //[Route("Account/Login/")]
         [HttpGet]
         public IActionResult LoginByFormNumber()
         {
             return View();
         }
+        //[Route("Account/Login/")]
         [HttpPost]
         [AllowAnonymous]
         public IActionResult LoginByFormNumber(LoginTestingViewModel model)

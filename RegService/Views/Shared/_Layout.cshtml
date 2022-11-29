@@ -20,66 +20,68 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RegService</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="btn-group nav">
-                                <button type="button" class="btn navbar-btn" style="background-color: rgba(241, 39, 90, 0.3) "> Hello @User.Identity.Name</button>
-                            </li>
-                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Create">Register User</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="GetAllUsers">GetAllUsers</a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                                </li>
-                            }
-                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Developer"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="EditUsersInRole">EditUsersInRole</a>
-                                </li>
-                            }
-                            <li class="nav-link">
-                                <form method="post" asp-controller="Account" asp-action="Logout">
-                                    <button type="submit" style="width:auto" class="nav-link btn btn-link py-0">Logout</button>
-                                </form>
-                            </li>
-                        }
-                    </ul>
+        <nav class="bg-blue-400">
+            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                <div class="relative flex h-16 items-center justify-between">
+                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <!-- Mobile menu button-->
+                        <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-blue-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div class="hidden sm:ml-6 sm:block">
+                            <div class="flex space-x-4">
+                                <a class="text-2xl text-white" asp-area="" asp-controller="Home" asp-action="Index">RegService</a>
+
+                                <a asp-area="" asp-controller="User" asp-action="Home" class="inline-flex items-center justify-center bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <button type="button" class="btn navbar-btn bg-blue-500"> Hello @User.Identity.Name</button>
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                    {
+                                        <a asp-area="" asp-controller="User" asp-action="Create" class="inline-flex items-center justify-center text-white hover:bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium">Register User</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="GetAllUsers" class="inline-flex items-center justify-center text-white hover:bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium">All Users</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-area="" asp-controller="Home" asp-action="Privacy" class="inline-flex items-center justify-center text-white hover:bg-blue-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Privacy</a>
+
+                                    }
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Developer"))
+                                    {
+                                        <a asp-area="" asp-controller="Administration" asp-action="EditUsersInRole" class="inline-flex items-center justify-center text-white hover:bg-blue-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium">EditUsersInRole</a>
+                                    }
+                                    else
+                                    {
+                                        <form method="post" asp-controller="Account" asp-action="Logout">
+                                            @*<button type="submit" style="width:auto" class="nav-link btn btn-link py-0">Logout</button>*@
+                                            <button type="submit" class="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">Logout</button>
+                                        </form>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </nav>
+
     </header>
-    <div class="container">
+    <div class="container bg-blue-100">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - RegService - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

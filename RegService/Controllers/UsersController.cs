@@ -34,7 +34,6 @@ namespace RegService.Controllers
 
         // This method shows all the details of the user with the Id.
         [HttpGet]
-        [Authorize]
         public IActionResult Details(int id)
         {
             var user = cRUD.GetById(id);
@@ -43,8 +42,8 @@ namespace RegService.Controllers
         }
 
         // This method is for creating new user.
-        [HttpGet]
         [Authorize(Roles = "Admin")]
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -66,7 +65,6 @@ namespace RegService.Controllers
                         return RedirectToAction("Details", new RouteValueDictionary(new { controller = "Users", action = "Details", Id = user.Id }));
                     }
                 }
-                
             }
             return View();
         }
