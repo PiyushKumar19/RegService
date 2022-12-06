@@ -113,5 +113,11 @@ namespace RegService.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("LoginByFormNumber", "Account");
         }
+
+        [HttpGet]
+        public IActionResult PageNotFound()
+        {
+            return View();
+        }
     }
 }

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RegService.ViewModel;
 
 namespace RegService.Controllers
 {
+    [Authorize(Roles = "Developer")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

@@ -67,5 +67,17 @@ namespace RegService.InterfacesAndSqlRepos
             }
             return f;
         }
+
+        //public UsersRegistered Transfer(UsersRegModel model)
+        //{
+        //    UsersRegistered u = context.UsersRegistered.Add(model);
+        //    var user = context.UsersRegistered.Find(u.Id);
+        //    if (user != null)
+        //    {
+        //        return user;
+        //    }
+        //    context.SaveChanges();
+        //    return null;
+        //}
     }
 }

@@ -18,9 +18,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="bg-blue-400">
     <header>
-        <nav class="bg-blue-400">
+        <nav>
             <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div class="relative flex h-16 items-center justify-between">
                     <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -40,14 +40,14 @@
                             <div class="flex space-x-4">
                                 <a class="text-2xl text-white" asp-area="" asp-controller="Home" asp-action="Index">RegService</a>
 
-                                <a asp-area="" asp-controller="User" asp-action="Home" class="inline-flex items-center justify-center bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                                <a asp-area="" asp-controller="Home" asp-action="Index" class="inline-flex items-center justify-center bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
 
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     <button type="button" class="btn navbar-btn bg-blue-500"> Hello @User.Identity.Name</button>
                                     @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                                     {
-                                        <a asp-area="" asp-controller="User" asp-action="Create" class="inline-flex items-center justify-center text-white hover:bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium">Register User</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-center text-white hover:bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium">Register User</a>
                                         <a asp-area="" asp-controller="Users" asp-action="GetAllUsers" class="inline-flex items-center justify-center text-white hover:bg-blue-400 text-white px-3 py-2 rounded-md text-sm font-medium">All Users</a>
                                     }
                                     else
@@ -61,14 +61,55 @@
                                     }
                                     else
                                     {
-                                        <form method="post" asp-controller="Account" asp-action="Logout">
-                                            @*<button type="submit" style="width:auto" class="nav-link btn btn-link py-0">Logout</button>*@
-                                            <button type="submit" class="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">Logout</button>
-                                        </form>
+
                                     }
+                                    <form method="post" asp-controller="Account" asp-action="Logout">
+                                        @*<button type="submit" style="width:auto" class="nav-link btn btn-link py-0">Logout</button>*@
+                                        <button type="submit" class="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-blue-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">Logout</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <script>
+                                        window.addEventListener('DOMContentLoaded', () => {
+                                            const menuBtn = document.querySelector('#menu-btn')
+                                            const dropdown = document.querySelector('#dropdown')
+
+                                            menuBtn.addEventListener('mouseenter', () => {
+                                                dropdown.classList.toggle('flex')
+                                            })
+                                            menuBtn.addEventListener('mouseleave', () => {
+                                                dropdown.classList.toggle('hidden')
+                                            })
+
+                                        })
+                                    </script>
+
+                                    <div class="">
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">About Us</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">Rules</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">Complain Online</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">Publications</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">FAQs</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">GROs</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">Realted Links</a>
+                                        <a asp-area="" asp-controller="Users" asp-action="Create" class="inline-flex items-center justify-end text-white hover:bg-blue-500 text-white px-3 py-2 rounded-md text-sm font-medium">RTI</a>
+
+                                        <div class="inline-flex justify-end">
+                                            <button class="bg-blue-300 px-4 py-2 rounded" id="menu-btn">Menu</button>
+
+                                            <div class="absolute bg-gray-200 hidden flex-col rounded mt-11 p-2 text-sm w-32" id="dropdown">
+                                                <a href="#" class="px-2 py-1 hover:bg-blue-300 rounded">Posts</a>
+                                                <a href="#" class="px-2 py-1 hover:bg-blue-300 rounded">Profile</a>
+                                                <a href="#" class="px-2 py-1 hover:bg-blue-300 rounded">Settings</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         </div>
+                        <a asp-area="" asp-controller="Users" asp-action="RaiseQuery" class="absolute right-2 self-center text-white hover:bg-blue-400 hover:text-white pr-4 px-3 py-2 rounded-md text-sm font-medium">Raise a query</a>
+
                     </div>
                 </div>
             </div>
@@ -84,6 +125,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css"></style>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

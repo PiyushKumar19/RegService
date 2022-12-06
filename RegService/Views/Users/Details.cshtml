@@ -1,190 +1,201 @@
 ﻿@model RegService.Models.UsersRegModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>UsersRegModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FileNo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FileNo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class = "col-sm-2">
-            <p>Mobile Numebr: </p>
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContactNo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmailId)
-        </dt>
-        <dd class = "col-sm-10">
-            @if (Model.EmailId == null)
-            {
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-            }
-            else
-            {
-                @Html.DisplayFor(model => model.EmailId)
-            }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
+<div class="grid grid-cols-2">
+    <div class="row space-y-4 borderbg-opacity-25">
+        <div>
+            <label asp-for="FileNo" class="font-bold">File Number: </label>
+            <span class="font-semibold pl-4">@Model.FileNo</span>
+        </div>
+        <div>
+            <label asp-for="FirstName" class="font-bold">Name: </label>
+            <span class="font-semibold pl-4">@Model.FirstName @Model.LastName</span>
+        </div>
+        <div>
+            <label asp-for="ContactNo" class="font-bold">Contact Number: </label>
+            <span class="font-semibold pl-4">@Model.ContactNo</span>
+        </div>
+        <div>
+            <label asp-for="Address" class="font-bold">Address: </label>
             @if (Model.Address == null)
             {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
             }
             else
             {
-                @Html.DisplayFor(model => model.Address)
+                <span class="font-semibold pl-4">@Model.Address</span>
             }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Pincode)
-        </dt>
-        <dd class = "col-sm-10">
-            @if (Model.Pincode == null)
-            {
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-            }
-            else
-            {
-                @Html.DisplayFor(model => model.Pincode)
-            }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div>
+            <label asp-for="State" class="font-bold">State: </label>
             @if (Model.State == null)
             {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
             }
             else
             {
-                @Html.DisplayFor(model => model.State)
+                <span class="font-semibold pl-4">@Model.State</span>
             }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.District)
-        </dt>
-        <dd class = "col-sm-10">
-            @if (Model.District == null)
+        </div>
+        <div>
+            <label asp-for="AccountNo" class="font-bold">Account Number: </label>
+            @if (Model.AccountNo == null)
             {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
             }
             else
             {
-                @Html.DisplayFor(model => model.District)
+                <span class="font-semibold pl-4">@Model.AccountNo</span>
             }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccountNo)
-        </dt>
-        <dd class = "col-sm-10">
-            @if(Model.AccountNo == null)
-            {
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-            }
-            else
-            {
-                @Html.DisplayFor(model => model.AccountNo)
-            }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IFSCcode)
-        </dt>
-        <dd class = "col-sm-10">
-            @if (Model.IFSCcode == null)
-            {
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-            }
-            else
-            {
-                @Html.DisplayFor(model => model.IFSCcode)
-            }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Branch)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div>
+            <label asp-for="Branch" class="font-bold">Branch: </label>
             @if (Model.Branch == null)
             {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
             }
             else
             {
-                @Html.DisplayFor(model => model.Branch)
+                <span class="font-semibold pl-4">@Model.Branch</span>
             }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BankName)
-        </dt>
-        <dd class = "col-sm-10">
-            @if (Model.BankName == null)
-            {
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-            }
-            else
-            {
-                @Html.DisplayFor(model => model.BankName)
-            }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AadhaarNo)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div>
+            <label asp-for="AadhaarNo" class="font-bold">Aadhaar No: </label>
             @if (Model.AadhaarNo == null)
             {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
             }
             else
             {
-                @Html.DisplayFor(model => model.AadhaarNo)
+                <span class="font-semibold pl-4">@Model.AadhaarNo</span>
             }
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PanNo)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+        <div>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Developer"))
+            {
+                <label asp-for="Errors" class="font-bold">Errors: </label>
+                @if (Model.Errors == null)
+                {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                }
+                else
+                {
+                    <span class="font-semibold pl-4">@Model.Errors</span>
+                }
+            }
+        </div>
+    </div>
+    <div class="row space-y-4 borderbg-opacity-25">
+        <div>
+            <label asp-for="EmailId" class="font-bold">EmailId: </label>
+            @if (Model.EmailId == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                <span class="font-semibold pl-4">@Model.EmailId</span>
+            }
+        </div>
+        <div>
+            <label asp-for="Pincode" class="font-bold">Pincode: </label>
+            @if (Model.Pincode == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                <span class="font-semibold pl-4">@Model.Pincode</span>
+            }
+        </div>
+        <div>
+            <label asp-for="District" class="font-bold">District: </label>
+            @if (Model.District == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                <span class="font-semibold pl-4">@Model.District</span>
+            }
+        </div>
+        <div>
+            <label asp-for="IFSCcode" class="font-bold">IFSCcode: </label>
+            @if (Model.IFSCcode == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                <span class="font-semibold pl-4">@Model.IFSCcode</span>
+            }
+        </div>
+        <div>
+            <label asp-for="BankName" class="font-bold">BankName: </label>
+            @if (Model.BankName == null)
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            }
+            else
+            {
+                <span class="font-semibold pl-4">@Model.BankName</span>
+            }
+        </div>
+        <div>
+            <label asp-for="PanNo" class="font-bold">PanNo: </label>
             @if (Model.PanNo == null)
             {
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
             }
             else
             {
-                @Html.DisplayFor(model => model.PanNo)
+                <span class="font-semibold pl-4">@Model.PanNo</span>
             }
-        </dd>
-    </dl>
+        </div>
+    </div>
 </div>
 
-<div class="">
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <div class="w-full grid grid-cols-2 justify-items-center">
+        <form>
+            <button asp-action="Edit" asp-controller="Users" asp-route-id="@Model?.Id" type="submit" class="bg-blue-500 justify-self-end hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Edit</button>
+        </form>
+        <form>
+            <button asp-action="Delete" asp-controller="Users" asp-route-id="@Model?.Id" type="submit" class="bg-blue-500 justify-self-start hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Delete</button>
+        </form>
+    </div>
+}
+else
+{
+    @if (Model.AccountNo == null || Model.IFSCcode == null || Model.Branch == null || Model.BankName == null || Model.AadhaarNo == null || Model.PanNo == null)
+    {
+        <div class="w-full grid grid-cols-2 justify-items-center">
+            <form class="justify-self-center">
+                <button asp-action="AccountDetailsFill" asp-controller="Users" asp-route-id="@Model?.Id" type="submit" class="bg-blue-500 justify-self-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Enter Account Details</button>
+            </form>
 
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+            <form class="justify-self-center">
+                <button asp-action="TransferFile" asp-controller="Users" asp-route-id="@Model?.Id" type="submit" class="bg-blue-500 inline-flex items-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    Next <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                </button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="w-full grid justify-items-center">
+            <form class="justify-self-center">
+                <button asp-action="TransferFile" asp-controller="Users" asp-route-id="@Model?.Id" type="submit" class="bg-blue-500 inline-flex items-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    Next <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></span>
+                </button>
+            </form>
+        </div>
+    }
+}
+

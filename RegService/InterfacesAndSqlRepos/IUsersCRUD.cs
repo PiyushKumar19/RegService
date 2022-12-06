@@ -11,5 +11,6 @@ namespace RegService.InterfacesAndSqlRepos
         public UsersRegModel Delete(int id);
         public bool FindByFileNoAndContactNo(int fileno, string contactno);
         public UsersRegModel FindByFileNo(int fileno);
+        //public UsersRegistered FindByFileNo(UsersRegModel model);
     }
 }

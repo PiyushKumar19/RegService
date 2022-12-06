@@ -12,19 +12,29 @@ namespace RegService.AppDbContext
         {
         }
         public DbSet<UsersRegModel> Users { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.HasSequence<int>("FormNo", schema: "dbo")
-                .StartsAt(10000000)
-            .IncrementsBy(3035);
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.HasSequence<int>("Id", schema: "dbo")
+        //        .StartsAt(1)
+        //    .IncrementsBy(1);
 
-            modelBuilder.Entity<UsersRegModel>()
-                .Property(o => o.Id)
-                .HasDefaultValueSql("NEXT VALUE FOR dbo.FormNo");
-        }
-        public DbSet<RegService.ViewModel.RegisterViewModel> RegisterViewModel { get; set; }
-        public DbSet<LoginTestingViewModel> LoginTestingViewModel { get; set; }
-        public DbSet<UserRegStatus> UserRegStatuses { get; set; }
+        //    modelBuilder.Entity<UsersRegModel>()
+        //        .Property(o => o.Id)
+        //        .HasDefaultValueSql("NEXT VALUE FOR dbo.Id");
+        //}
+        public DbSet<UsersRegistered> UsersRegistered { get; set; }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.HasSequence<int>("Id", schema: "dbo")
+        //        .StartsAt(1)
+        //    .IncrementsBy(1);
+
+        //    modelBuilder.Entity<UsersRegModel>()
+        //        .Property(o => o.Id)
+        //        .HasDefaultValueSql("NEXT VALUE FOR dbo.Id");
+        //}
+        public DbSet<RegService.ViewModel.AccountDetailsViewModel> AccountDetailsViewModel { get; set; }
     }
 }

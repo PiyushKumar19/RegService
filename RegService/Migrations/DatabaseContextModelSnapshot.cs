@@ -22,10 +22,6 @@ namespace RegService.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.HasSequence<int>("FormNo", "dbo")
-                .StartsAt(10000000L)
-                .IncrementsBy(3035);
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -224,36 +220,13 @@ namespace RegService.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("RegService.Models.UserRegStatus", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<bool?>("FileFilled")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("RegStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserRegModelId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserRegModelId");
-
-                    b.ToTable("UserRegStatuses");
-                });
-
-            modelBuilder.Entity("RegService.Models.UsersRegModel", b =>
+            modelBuilder.Entity("RegService.Models.UsersRegistered", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValueSql("NEXT VALUE FOR dbo.FormNo");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AadhaarNo")
                         .HasColumnType("nvarchar(max)");
@@ -306,44 +279,92 @@ namespace RegService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UsersRegistered");
                 });
 
-            modelBuilder.Entity("RegService.ViewModel.LoginTestingViewModel", b =>
+            modelBuilder.Entity("RegService.Models.UsersRegModel", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AadhaarNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccountNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Branch")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ContactNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("District")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Errors")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("FileNo")
                         .HasColumnType("int");
 
-                    b.ToTable("LoginTestingViewModel");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IFSCcode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PanNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Pincode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("RegService.ViewModel.RegisterViewModel", b =>
+            modelBuilder.Entity("RegService.ViewModel.AccountDetailsViewModel", b =>
                 {
-                    b.Property<string>("ConfirmEmail")
-                        .IsRequired()
+                    b.Property<string>("AccountNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ConfirmPassword")
-                        .IsRequired()
+                    b.Property<string>("BankName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactNo")
-                        .IsRequired()
+                    b.Property<string>("Branch")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
+                    b.Property<string>("IFSCcode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
-                    b.ToTable("RegisterViewModel");
+                    b.ToTable("AccountDetailsViewModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -395,15 +416,6 @@ namespace RegService.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RegService.Models.UserRegStatus", b =>
-                {
-                    b.HasOne("RegService.Models.UsersRegModel", "UserRegModel")
-                        .WithMany()
-                        .HasForeignKey("UserRegModelId");
-
-                    b.Navigation("UserRegModel");
                 });
 #pragma warning restore 612, 618
         }

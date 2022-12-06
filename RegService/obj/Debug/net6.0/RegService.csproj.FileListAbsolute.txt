@@ -267,3 +267,8 @@ C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\RegService.p
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\RegService.genruntimeconfig.cache
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\ref\RegService.dll
 C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutOriginal.cshtml.rz.scp.css
+C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\staticwebassets\msbuild.RegService.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\staticwebassets\msbuild.build.RegService.props
+C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.RegService.props
+C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.RegService.props
+C:\Users\Piyush\source\repos\RegService\RegService\obj\Debug\net6.0\staticwebassets.pack.json

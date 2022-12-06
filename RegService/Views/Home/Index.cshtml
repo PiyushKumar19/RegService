@@ -6,3 +6,28 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const menuBtn = document.querySelector('#menu-btn')
+        const dropdown = document.querySelector('#dropdown')
+
+        menuBtn.addEventListener('click', () => {
+            dropdown.classList.toggle('hidden')
+            dropdown.classList.toggle('flex')
+        })
+
+    })
+</script>
+<nav>
+    <div class="m-10">
+        <button class="bg-blue-300 px-4 py-2 rounded" id="menu-btn">Menu</button>
+
+        <div class="bg-gray-200 hidden flex-col rounded mt-1 p-2 text-sm w-32" id="dropdown">
+            <a href="#" class="px-2 py-1 hover:bg-blue-300 rounded">Posts</a>
+            <a href="#" class="px-2 py-1 hover:bg-blue-300 rounded">Profile</a>
+            <a href="#" class="px-2 py-1 hover:bg-blue-300 rounded">Settings</a>
+        </div>
+    </div>
+
+</nav>
