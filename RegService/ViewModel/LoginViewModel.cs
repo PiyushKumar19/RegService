@@ -9,6 +9,7 @@ namespace RegService.ViewModel
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public string? ContactNo { get; set; }
+        public string? ReturnUrl { get; set; }
         public bool RememberMe { get; set; }
     }
 }

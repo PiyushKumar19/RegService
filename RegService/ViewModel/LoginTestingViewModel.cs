@@ -6,6 +6,5 @@ namespace RegService.ViewModel
     public class LoginTestingViewModel
     {
         public int FileNo { get; set; }
-        public string ContactNo { get; set; }
     }
 }

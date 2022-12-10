@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RegService.AppDbContext;
 using RegService.InterfacesAndSqlRepos;
+using RegService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,15 @@ string cs = "Database=RegServiceDb;server=LAPTOP-2SDVC21L;Uid=sa;password=Piyush
 builder.Services.AddDbContextPool<DatabaseContext>(option =>
 option.UseSqlServer(cs));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<DatabaseContext>();
+    .AddEntityFrameworkStores<DatabaseContext>().AddDefaultTokenProviders();
+builder.Services.Configure<DataProtectionTokenProviderOptions>(opts => opts.TokenLifespan = TimeSpan.FromHours(10));
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = ".AspNetCore.Identity.Application";
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+    options.SlidingExpiration = true;
+});
 
 var app = builder.Build();
 
@@ -22,6 +31,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();

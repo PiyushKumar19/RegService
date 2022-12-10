@@ -12,6 +12,7 @@ using RegService.AppDbContext;
 using RegService.InterfacesAndSqlRepos;
 using RegService.Models;
 using RegService.ViewModel;
+using NuGet.Common;
 
 namespace RegService.Controllers
 {
@@ -42,11 +43,6 @@ namespace RegService.Controllers
         public IActionResult Details(int id)
         {
             var user = cRUD.GetById(id);
-
-            if (user.Errors != null)
-            {
-                return RedirectToAction(nameof(ShowErrors));
-            }
             return View(user);
         }
 
@@ -122,45 +118,61 @@ namespace RegService.Controllers
             return RedirectToAction("GetAllUsers");
         }
 
-        [HttpGet]
+        public IActionResult RegistrationErrors(int id)
+        {
+            var userError = cRUD.GetById(id);
+            return View(userError);
+        }
+        [AllowAnonymous]
         public IActionResult TransferFile(int id)
         {
-            var user = cRUD.GetById(id);
-            return View(user);
-        }
-        [HttpPost]
-        public IActionResult TransferFile([Bind("Id,FileNo,FirstName,LastName,ContactNo,EmailId,Address,Pincode,State,District,AccountNo,IFSCcode,Branch,BankName,AadhaarNo,PanNo")] UsersRegModel model)
-        {
-            if (ModelState.IsValid)
+            var model = cRUD.GetById(id);
+            if (model.Errors != null)
             {
-                var user = new UsersRegistered
+                return RedirectToAction("RegistrationErrors", new { model.Id });
+            }
+            var checkUser = context.UsersRegistered.Where(c => c.FileNo.Equals(model.FileNo)).FirstOrDefault();
+
+            if (checkUser == null)
+            {
+                if (ModelState.IsValid)
                 {
-                    FileNo = model.FileNo,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    ContactNo = model.ContactNo,
-                    EmailId = model.EmailId,
-                    Address = model.Address,
-                    Pincode = model.Pincode,
-                    State = model.State,
-                    District = model.District,
-                    AccountNo = model.AccountNo,
-                    IFSCcode = model.IFSCcode,
-                    Branch = model.Branch,
-                    BankName = model.BankName,
-                    AadhaarNo = model.AadhaarNo,
-                    PanNo = model.PanNo
-                };
-                if (user != null)
-                {
-                    if (ModelState.IsValid)
+                    var reguser = new UsersRegistered
                     {
-                        context.UsersRegistered.Add(user);
-                        context.SaveChanges();
-                        return RedirectToAction(nameof(SuccessfulSubmit));
+                        FileNo = model.FileNo,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        ContactNo = model.ContactNo,
+                        EmailId = model.EmailId,
+                        Address = model.Address,
+                        Pincode = model.Pincode,
+                        State = model.State,
+                        District = model.District,
+                        AccountNo = model.AccountNo,
+                        IFSCcode = model.IFSCcode,
+                        Branch = model.Branch,
+                        BankName = model.BankName,
+                        AadhaarNo = model.AadhaarNo,
+                        PanNo = model.PanNo
+                    };
+
+                    if (reguser != null)
+                    {
+                        if (ModelState.IsValid)
+                        {
+                            context.UsersRegistered.Add(reguser);
+                            context.SaveChanges();
+                            return RedirectToAction(nameof(SuccessfulSubmit));
+                        }
                     }
+                    return ViewBag("You are already registered.");
                 }
             }
+            return RedirectToAction(nameof(AlreadyExists));
+        }
+
+        public IActionResult AlreadyExists()
+        {
             return View();
         }
 
@@ -172,6 +184,18 @@ namespace RegService.Controllers
         [HttpGet]
         public IActionResult RaiseQuery()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RaiseQuery(RaiseQueryViewModel model)
+        {
+            EmailHelper emailHelper = new EmailHelper();
+            bool emailResponse = emailHelper.SendQueryEmail(model);
+            if (emailResponse == true)
+            {
+                return RedirectToAction(nameof(SuccessfulSubmit));
+            }
             return View();
         }
 
